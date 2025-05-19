@@ -97,6 +97,8 @@ def register():
     name = entry_register.get().strip()
     if not name:
         messagebox.showwarning("Viga", "Sisesta kasutajanimi!")
+    elif not name.isalnum():
+        messagebox.showerror("Viga", "Lubatud on ainult tähed ja numbrid.")
     elif not registreeri_kasutaja(name):
         messagebox.showerror("Viga", "Kasutajanimi on juba olemas.")
     else:
@@ -124,6 +126,8 @@ def login():
         messagebox.showerror("Viga", "Kasutajat ei leitud.")
     else:
         kasutaja_nimi = name
+        if kasutajad[kasutaja_nimi] == 0:
+            messagebox.showinfo("Teade", "Sul on 0 fische. Palun lisa või loo uus kasutaja.")
         update_game_ui()
         clear_frames()
         game_menu.pack(expand=True)
@@ -184,6 +188,16 @@ def vota_kaart():
     if skoor > 21:
         kaotus()
 
+def kustuta_ajalugu():
+    if not os.path.exists("tulemused.txt"):
+        return
+    with open("tulemused.txt", "r", encoding="utf-8") as f:
+        uued = [r for r in f if not r.startswith(kasutaja_nimi)]
+    with open("tulemused.txt", "w", encoding="utf-8") as f:
+        f.writelines(uued)
+    import os
+    messagebox.showinfo("Ajalugu kustutatud", "Sinu mänguajalugu on kustutatud.")
+
 def peatu():
     global arvuti_skoor
     while arvuti_skoor < 17:
@@ -198,10 +212,23 @@ def voit():
     salvesta_tulemus(kasutaja_nimi, True, skoor, lae_kasutajad()[kasutaja_nimi], panus)
     show_result("Võitsid!", f"+{panus} fische")
 
+def lisa_fische():
+    global kasutaja_nimi
+    fiske = lae_kasutajad().get(kasutaja_nimi, 0)
+    if fiske >= 1000:
+        messagebox.showinfo("Täis", "Sul on juba 1000 või rohkem fische.")
+        return
+    uuenda_fiske(kasutaja_nimi, 1000 - fiske)
+    messagebox.showinfo("Lisatud", f"Sinu fiske täiendati kuni 1000-ni.")
+    update_game_ui()
+
 def kaotus():
     uuenda_fiske(kasutaja_nimi, -panus)
     salvesta_tulemus(kasutaja_nimi, False, skoor, lae_kasutajad()[kasutaja_nimi], panus)
     show_result("Kaotasid.", f"-{panus} fische")
+    
+    if lae_kasutajad()[kasutaja_nimi] == 0:
+            messagebox.showinfo("Teade", "Sul on nüüd 0 fische. Palun lisa uusi või registreeri uuesti.")
 
 def logout():
     global kasutaja_nimi
@@ -221,6 +248,10 @@ btn_panus_start = ctk.CTkButton(game_menu, text="Alusta panusega", command=alust
 btn_vota = ctk.CTkButton(game_menu, text="Võta kaart", command=vota_kaart)
 btn_peatu = ctk.CTkButton(game_menu, text="Peatu", command=peatu)
 btn_ajalugu = ctk.CTkButton(game_menu, text="Vaata ajalugu", command=lambda: messagebox.showinfo("Sinu ajalugu", loe_ajalugu(kasutaja_nimi)))
+btn_kustuta_ajalugu = ctk.CTkButton(game_menu, text="Kustuta ajalugu", command=kustuta_ajalugu)
+btn_kustuta_ajalugu.pack(pady=4)
+btn_lisa_fiske = ctk.CTkButton(game_menu, text="Lisa fische", command=lisa_fische)
+btn_lisa_fiske.pack(pady=4)
 btn_logout = ctk.CTkButton(game_menu, text="Logi välja", command=logout)
 
 game_label.pack(pady=10)
