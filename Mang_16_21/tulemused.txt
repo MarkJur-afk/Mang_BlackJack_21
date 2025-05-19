@@ -1,0 +1,7 @@
+mark - Võit - 19 punkti - 110 fische
+Mark - Kaotus - 16 punkti - -100 fische - Jääk: 900
+Mark - Võit - 19 punkti - +100 fische - Jääk: 1000
+Marek - Kaotus - 22 punkti - -100 fische - Jääk: 900
+Ilja - Võit - 19 punkti - +100 fische - Jääk: 1100
+Mark - Kaotus - 19 punkti - -100 fische - Jääk: 900
+Martin - Kaotus - 27 punkti - -100 fische - Jääk: 900

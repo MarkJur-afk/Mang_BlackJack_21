@@ -1,0 +1,6 @@
+mark:110
+Mark:900
+Marek:900
+Ilja:1100
+Martin:900
+Roma:1000
