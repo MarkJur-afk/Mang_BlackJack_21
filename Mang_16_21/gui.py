@@ -17,7 +17,7 @@ ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
 
 app = ctk.CTk()
-app.geometry("1024x768")
+app.geometry("1440x900")
 app.title("Mäng 21")
 
 font_header = ("Segoe UI", 24)
@@ -83,9 +83,9 @@ def go_to_register():
     register_frame.pack(expand=True)
 
 main_label = ctk.CTkLabel(main_menu, text="Tere tulemast mängu 21!", font=font_header)
-btn_login = ctk.CTkButton(main_menu, text="Logi sisse", command=go_to_login, width=200)
-btn_register = ctk.CTkButton(main_menu, text="Registreeri", command=go_to_register, width=200)
-btn_exit = ctk.CTkButton(main_menu, text="Välju", command=app.destroy, width=200)
+btn_login = ctk.CTkButton(main_menu, text="Logi sisse", command=go_to_login, width=300, height=40)
+btn_register = ctk.CTkButton(main_menu, text="Registreeri", command=go_to_register, width=300, height=40)
+btn_exit = ctk.CTkButton(main_menu, text="Välju", command=app.destroy, width=300, height=40)
 
 main_label.pack(pady=30)
 btn_login.pack(pady=10)
@@ -107,8 +107,8 @@ def register():
 
 register_label = ctk.CTkLabel(register_frame, text="Registreeri", font=font_header)
 entry_register = ctk.CTkEntry(register_frame, placeholder_text="Uus kasutajanimi", width=250)
-btn_do_register = ctk.CTkButton(register_frame, text="Registreeri", command=register, width=250)
-btn_back1 = ctk.CTkButton(register_frame, text="Tagasi", command=show_main_menu)
+btn_do_register = ctk.CTkButton(register_frame, text="Registreeri", command=register, width=300, height=40)
+btn_back1 = ctk.CTkButton(register_frame, text="Tagasi", command=show_main_menu, width=300, height=40)
 
 register_label.pack(pady=20)
 entry_register.pack(pady=10)
@@ -134,8 +134,8 @@ def login():
 
 login_label = ctk.CTkLabel(login_frame, text="Logi sisse", font=font_header)
 entry_login = ctk.CTkEntry(login_frame, placeholder_text="Kasutajanimi", width=250)
-btn_do_login = ctk.CTkButton(login_frame, text="Sisene", command=login, width=250)
-btn_back2 = ctk.CTkButton(login_frame, text="Tagasi", command=show_main_menu)
+btn_do_login = ctk.CTkButton(login_frame, text="Sisene", command=login, width=300, height=40)
+btn_back2 = ctk.CTkButton(login_frame, text="Tagasi", command=show_main_menu, width=300, height=40)
 
 login_label.pack(pady=20)
 entry_login.pack(pady=10)
@@ -239,34 +239,38 @@ game_label = ctk.CTkLabel(game_menu, text="", font=font_header)
 fiske_label = ctk.CTkLabel(game_menu, text="Fische: -", font=font_normal)
 score_label = ctk.CTkLabel(game_menu, text="Skoor: -", font=font_normal)
 
-entry_panus = ctk.CTkEntry(game_menu, placeholder_text="Sisesta panus", width=150)
-btn_25 = ctk.CTkButton(game_menu, text="1/4", command=lambda: set_panustamine(0.25), width=80)
-btn_50 = ctk.CTkButton(game_menu, text="1/2", command=lambda: set_panustamine(0.5), width=80)
-btn_all = ctk.CTkButton(game_menu, text="All in", command=lambda: set_panustamine("all"), width=80)
-btn_panus_start = ctk.CTkButton(game_menu, text="Alusta panusega", command=alusta_mang_panusega)
+entry_panus = ctk.CTkEntry(game_menu, placeholder_text="Sisesta panus", width=200)
+btn_25 = ctk.CTkButton(game_menu, text="1/4", command=lambda: set_panustamine(0.25), width=120, height=35)
+btn_50 = ctk.CTkButton(game_menu, text="1/2", command=lambda: set_panustamine(0.5), width=120, height=35)
+btn_all = ctk.CTkButton(game_menu, text="All in", command=lambda: set_panustamine("all"), width=120, height=35)
+btn_panus_start = ctk.CTkButton(game_menu, text="Alusta panusega", command=alusta_mang_panusega, width=250, height=35)
 
-btn_vota = ctk.CTkButton(game_menu, text="Võta kaart", command=vota_kaart)
-btn_peatu = ctk.CTkButton(game_menu, text="Peatu", command=peatu)
-btn_ajalugu = ctk.CTkButton(game_menu, text="Vaata ajalugu", command=lambda: messagebox.showinfo("Sinu ajalugu", loe_ajalugu(kasutaja_nimi)))
-btn_kustuta_ajalugu = ctk.CTkButton(game_menu, text="Kustuta ajalugu", command=kustuta_ajalugu)
-btn_kustuta_ajalugu.pack(pady=4)
-btn_lisa_fiske = ctk.CTkButton(game_menu, text="Lisa fische", command=lisa_fische)
-btn_lisa_fiske.pack(pady=4)
-btn_logout = ctk.CTkButton(game_menu, text="Logi välja", command=logout)
+btn_vota = ctk.CTkButton(game_menu, text="Võta kaart", command=vota_kaart, width=250, height=35)
+btn_peatu = ctk.CTkButton(game_menu, text="Peatu", command=peatu, width=250, height=35)
+btn_ajalugu = ctk.CTkButton(game_menu, text="Vaata ajalugu", command=lambda: messagebox.showinfo("Sinu ajalugu", loe_ajalugu(kasutaja_nimi)), width=250, height=35)
+btn_kustuta_ajalugu = ctk.CTkButton(game_menu, text="Kustuta ajalugu", command=kustuta_ajalugu, width=250, height=35)
+btn_lisa_fiske = ctk.CTkButton(game_menu, text="Lisa fische", command=lisa_fische, width=250, height=35)
+btn_logout = ctk.CTkButton(game_menu, text="Logi välja", command=logout, width=250, height=35)
 
+# --- Pack layout ---
 game_label.pack(pady=10)
 fiske_label.pack(pady=5)
 score_label.pack(pady=5)
 card_display_frame.pack(pady=10)
+
 entry_panus.pack(pady=5)
 btn_25.pack(pady=2)
 btn_50.pack(pady=2)
 btn_all.pack(pady=2)
 btn_panus_start.pack(pady=5)
+
 btn_vota.pack(pady=4)
 btn_peatu.pack(pady=4)
 btn_ajalugu.pack(pady=10)
+btn_kustuta_ajalugu.pack(pady=4)
+btn_lisa_fiske.pack(pady=4)
 btn_logout.pack(pady=4)
+
 
 # --- Result ---
 result_label = ctk.CTkLabel(result_frame, text="TULEMUS", font=font_header)

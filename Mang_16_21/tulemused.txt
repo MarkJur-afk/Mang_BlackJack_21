@@ -5,3 +5,7 @@ Marek - Kaotus - 22 punkti - -100 fische - Jääk: 900
 Ilja - Võit - 19 punkti - +100 fische - Jääk: 1100
 Mark - Kaotus - 19 punkti - -100 fische - Jääk: 900
 Martin - Kaotus - 27 punkti - -100 fische - Jääk: 900
+Artjom - Kaotus - 20 punkti - -250 fische - Jääk: 750
+Artjom - Kaotus - 25 punkti - -250 fische - Jääk: 500
+Artjom - Kaotus - 32 punkti - -500 fische - Jääk: 0
+Mark - Kaotus - 19 punkti - -900 fische - Jääk: 0
